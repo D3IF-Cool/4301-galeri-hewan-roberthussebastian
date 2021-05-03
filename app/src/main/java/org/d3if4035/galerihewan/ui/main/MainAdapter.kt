@@ -6,9 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import org.d3if4035.galerihewan.Hewan
 import org.d3if4035.galerihewan.databinding.ListItemBinding
 
-class MainAdapter(private val data: List<Hewan>) :
-        RecyclerView.Adapter<MainAdapter.ViewHolder>(){
+class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
+    private val data = mutableListOf<Hewan>()
+    fun updateData(newData: List<Hewan>) {
+        data.clear()
+        data.addAll(newData)
+        notifyDataSetChanged()
+    }
 
     class ViewHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -32,5 +37,4 @@ class MainAdapter(private val data: List<Hewan>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(data[position])
     }
-
 }
